@@ -65,7 +65,7 @@
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
-    transparency = 13
+#    transparency = 13
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -184,8 +184,8 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order to find
 # fitting options for rules.
 
-# [notify-send]
-#       appname = notify-send
+#[notify-send]
+#     appname = notify-send
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
