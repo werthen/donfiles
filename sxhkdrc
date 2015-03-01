@@ -112,7 +112,7 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	xbacklight -inc 10
 
-super + parenleft
+super + r
     scrot -s
 
 #

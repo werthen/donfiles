@@ -23,5 +23,9 @@ alias l="ls -l"
 alias cp="gcp"
 
 export WALLPAPER="$HOME/images/wallpapers/city.jpg"
+export PATH="$PATH:/home/don/bin:/home/don/.gem/ruby/2.2.0/bin"
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR="vim"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=($HOME/etc/t-completion.zsh $fpath)
