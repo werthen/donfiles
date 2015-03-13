@@ -20,7 +20,9 @@ zstyle ':completion:*' menu select
 
 alias ls="ls --color"
 alias l="ls -l"
-alias cp="gcp"
+alias cp="rsync -avz"
+alias netlist="netctl-auto list"
+alias curnet="netctl-auto current"
 
 export WALLPAPER="$HOME/images/wallpapers/city.jpg"
 export PATH="$PATH:/home/don/bin:/home/don/.gem/ruby/2.2.0/bin"
