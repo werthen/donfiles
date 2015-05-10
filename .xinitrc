@@ -7,7 +7,6 @@ hsetroot -fill $WALLPAPER
 xsetroot -cursor_name left_ptr
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 compton --config /home/don/.config/compton.conf &
-redshift &
 dunst -config /home/don/.dunstrc &
 
 # Lol java

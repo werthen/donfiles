@@ -17,6 +17,10 @@ super + b
 super + {s,f}
 	bspc window -t {floating,fullscreen}
 
+# Equalize leaves of desktop
+super + e
+    bspc desktop -E
+
 super + ctrl + s
 	bspc window -t pseudo_tiled 
 
@@ -34,8 +38,6 @@ super + {o,i}
 super + y
 	bspc window -w last.manual
 
-super + m
-	bspc window -s biggest
 
 super + {_,shift + }{h,j,k,l}
 	bspc window -{f,s} {left,down,up,right}
@@ -87,7 +89,16 @@ super + {Return, KP_Enter}
 	urxvt
 
 super + shift + {Return, KP_Enter}
-    urxvt & bspc window -t floating=on
+    urxvt -name scratchpad
+
+super + control + {Return, KP_Enter}
+    urxvt -cd $(xcwd)
+
+alt + shift + quotedbl
+    puu.sh
+
+alt + shift + apostrophe
+    puu.sh -s
 
 super + space
 	j4-dmenu-desktop --dmenu="dmenu -i" --term="sakura"
@@ -112,8 +123,20 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
 	xbacklight -inc 10
 
+XF86AudioPrev
+    quodlibet --previous
+
+XF86AudioNext
+    quodlibet --next
+
+XF86AudioPlay
+    quodlibet --play-pause
+
+super + m
+	ponymix toggle
+
 super + r
-    scrot -s
+    pkill panel ; panel
 
 #
 # Mouse bindings
