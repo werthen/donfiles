@@ -21,12 +21,15 @@ zstyle ':completion:*' menu select
 
 alias ls="ls --color"
 alias l="ls -l"
-alias cp="rsync -avz"
 alias netlist="netctl-auto list"
 alias curnet="netctl-auto current"
 alias netbeans="netbeans -J-Dnetbeans.slow.system.clipboard.hack=false"
 alias mv="mv -i"
-alias open="xdg-open"
+alias rm="rm -I"
+alias open="mimeopen"
+alias ctrlc="xclip -sel clip"
+alias ctrlv="xclip -o -sel clip"
+alias fuck='$(thefuck $(fc -ln -1))'
 
 export WALLPAPER="$HOME/images/wallpapers/city.jpg"
 export PATH="$PATH:/home/don/bin:/home/don/.gem/ruby/2.2.0/bin"
