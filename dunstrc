@@ -1,4 +1,4 @@
-# vim: set ft=dunstrc:
+# vim: set ft=cfg:
 [global]
 
     font = Terminus 9
