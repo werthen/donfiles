@@ -13,4 +13,5 @@ dunst -config /home/don/.dunstrc &
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 sxhkd &
+xflux -l 51.015843 -g 3.623900
 exec bspwm -c $HOME/dotfiles/bspwmrc

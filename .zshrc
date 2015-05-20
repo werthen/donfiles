@@ -30,14 +30,24 @@ alias open="mimeopen"
 alias ctrlc="xclip -sel clip"
 alias ctrlv="xclip -o -sel clip"
 alias fuck='$(thefuck $(fc -ln -1))'
+alias menu=''
 
 export WALLPAPER="$HOME/images/wallpapers/city.jpg"
-export PATH="$PATH:/home/don/bin:/home/don/.gem/ruby/2.2.0/bin"
+export PATH="$PATH:/home/don/bin:/home/don/.gem/ruby/2.2.0/bin:/home/don/.cabal/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="vim"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath=($HOME/etc/t-completion.zsh $fpath)
+
+# Colored man pages
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;33;246m'   # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # CTRL-S hangs terminal fix
 stty -ixon
