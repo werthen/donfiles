@@ -14,4 +14,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 sxhkd &
 xflux -l 51.015843 -g 3.623900
+xset b off
 exec bspwm -c $HOME/dotfiles/bspwmrc
