@@ -11,9 +11,6 @@ super + w
 super + t
     bspc desktop -l next
 
-super + b
-    bspc desktop -B
-
 super + {s,f}
     bspc window -t {floating,fullscreen}
 
@@ -21,59 +18,36 @@ super + {s,f}
 super + e
     bspc desktop -E
 
+super + b
+    bspc desktop -B
+
 super + ctrl + s
     bspc window -t pseudo_tiled 
 
-super + {grave,Tab}
-    bspc {window,desktop} -f last
-
-# super + apostrophe
-#    bspc window -s last
-
-super + {o,i}
-    bspc control --record-history off; \
-    bspc window {older,newer} -f; \
-    bspc control --record-history on
-
-super + y
-    bspc window -w last.manual
-
+super + o ; {b}
+    {firefox}
 
 super + {_,shift + }{h,j,k,l}
     bspc window -{f,s} {left,down,up,right}
 
-super + {_,shift + }c
-    bspc window -f {next,prev}
-
-super + {comma,period}
-    bspc desktop -C {backward,forward}
-
-super + bracket{left,right}
-    bspc desktop -f {prev,next}
-
 super + ctrl + {h,j,k,l}
     bspc window -p {left,down,up,right}
 
-super + ctrl + {_,shift + }space
-    bspc {window -p cancel,desktop -c}
-
 super + alt + {h,j,k,l}
-    bspc window -e {left -10,down +10,up -10,right +10}
-
-super + alt + shift + {h,j,k,l}
-    bspc window -e {right -10,up +10,down -10,left +10}
-
-super + ctrl + {1-9}
-    bspc window -r 0.{1-9}
+    bspc window -e {left -15,down +15,up -15,right +15} ||\
+    bspc window -e {right -15,up +15,down -15,left +15}
 
 super + {_,shift + } {ampersand,eacute,quotedbl,apostrophe}
-        bspc {desktop -f,window -d} focused:^{1,2,3,4}
+        bspc {desktop -f,window -d} focused:^{1-4}
+
+super + p
+    bspc config focus_follows_pointer {true, false}
 
 ~button1
     bspc pointer -g focus
 
 super + button{1-3}
-    bspc pointer -g {move,resize_side,resize_corner}
+    ; bspc pointer -g {move,resize_side,resize_corner}
 
 super + !button{1-3}
     bspc pointer -t %i %i
@@ -90,9 +64,6 @@ super + {Return, KP_Enter}
 
 super + shift + {Return, KP_Enter}
     urxvt -name scratchpad
-
-super + control + {Return, KP_Enter}
-    urxvt -cd $(xcwd)
 
 alt + shift + quotedbl
     puu.sh
@@ -111,48 +82,20 @@ super + Escape
 # Custom
 #
 
-XF86AudioRaiseVolume
-    amixer -q set Master 2%+ unmute
+XF86Audio{Raise,Lower}Volume
+    ponymix {increase,decrease} 5
 
-XF86AudioLowerVolume
-    amixer -q set Master 2%- unmute
+XF86MonBrightness{Down,Up}
+    xbacklight -{dec,inc} 10
 
-XF86MonBrightnessDown
-    xbacklight -dec 10
-
-XF86MonBrightnessUp
-    xbacklight -inc 10
-
-XF86AudioPrev
-    quodlibet --previous
-
-XF86AudioNext
-    quodlibet --next
-
-XF86AudioPlay
-    quodlibet --play-pause
+XF86Audio{Prev,Next,Play}
+    quodlibet --{previous,next,play-pause}
 
 super + m
     ponymix toggle
 
 super + r
     pkill panel ; panel
-
-#
-# Mouse bindings
-#
-
-# Move or resize window
-super + button{1,2}
-    bspc pointer -g {move,resize_corner}
-
-# Needed for ^^^^
-super + !button{1,2}
-    bspc pointer -t %i %i
-
-
-super + @button{1,2}
-    bspc pointer -u
 
 super + twosuperior
     xsecurelock auth_pam_x11 saver_blank
