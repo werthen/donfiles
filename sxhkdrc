@@ -95,7 +95,7 @@ super + m
     ponymix toggle
 
 super + r
-    pkill panel ; panel
+    {pkill panel,panel}
 
 super + twosuperior
     xsecurelock auth_pam_x11 saver_blank

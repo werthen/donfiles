@@ -136,6 +136,8 @@
     # Align icons left/right/off
     icon_position = left
 
+    icon_folders = /home/don/.local/share/icons/PaperPNG/16x16/status/
+
 [frame]
     width = 0
     color = "#606060"

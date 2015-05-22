@@ -30,6 +30,12 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " Stuff
 Plugin 'scrooloose/nerdtree'
 
+" Haskell
+" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'eagletmt/neco-ghc'
+" Plugin 'Shougo/vimproc.vim'
+Plugin 'dag/vim2hs'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -67,6 +73,9 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+" Haskell Completion
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
 " Let <CR> expand snippets
 let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
@@ -91,7 +100,7 @@ set tabstop=4
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 set shiftwidth=4
 set expandtab
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 set nu
 syntax on
 set t_Co=256
@@ -136,6 +145,7 @@ endfu
 com! WP call WordProcessorMode()
 
 autocmd FileType tex call WordProcessorMode()
+" au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
 
 nnoremap <space> za
 

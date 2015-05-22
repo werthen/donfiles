@@ -1,0 +1,66 @@
+#! /bin/sh
+#
+# Example panel for LemonBoy's bar
+
+WHITE="#ffffffff"
+RED="#ffe62056"
+COMMAND="bspc desktop -f"
+
+while read -r line ; do
+    case $line in
+        C*)
+            clock="${line#?}"
+            ;;
+        S*)
+            # clock output
+            sys_infos="${line#?}"
+            ;;
+        T*)
+            # xtitle output
+            title="${line#?}"
+            ;;
+        W*)
+            # bspwm internal state
+            wm_infos=""
+            IFS=':'
+            set -- ${line#?}
+            while [ $# -gt 0 ] ; do
+                item=$1
+                name=${item#?}
+                case $item in
+                    O*)
+                        # focused occupied desktop
+                        wm_infos="$wm_infos %{F$WHITE}%{U$RED}%{+u}${name}%{-u}%{F-}"
+                        ;;
+                    F*)
+                        # focused free desktop
+                        wm_infos="$wm_infos %{F#ffaaaaaa}%{U$RED}%{+u}${name}%{-u}%{F-}"
+                        ;;
+                    U*)
+                        # focused urgent desktop
+                        wm_infos="$wm_infos %{U$RED}%{+u}${name}%{-u}"
+                        ;;
+                    o*)
+                        # occupied desktop
+                        wm_infos="$wm_infos %{A:$COMMAND $name:}%{F$WHITE}${name}%{F-}%{A}"
+                        ;;
+                    f*)
+                        # free desktop
+                        wm_infos="$wm_infos %{A:$COMMAND $name:}%{F#ffaaaaaa}${name}%{F-}%{A}"
+                        ;;
+                    u*)
+                        # urgent desktop
+                        wm_infos="$wm_infos %{A:$COMMAND $name:}%{B$RED}%{F$WHITE}${name}%{F-}%{B-}%{A}"
+                        ;;
+                    L*)
+                        # layout
+                        layout=$(printf "%s" "${name}" | sed 's/\(.\).*/\U\1/')
+                        wm_infos="$wm_infos    $layout"
+                        ;;
+                esac
+                shift
+            done
+            ;;
+    esac
+    printf "%s\n" "%{l} $wm_infos %{c} $title %{r} $sys_infos | $clock  "
+done

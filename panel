@@ -1,0 +1,50 @@
+#! /bin/sh
+
+wifi()
+{
+    message=$(wicd-cli --wireless -i | grep "Connected to" | sed -e 's/Connected to//' -e 's/%/%%/g')
+    echo "$message"
+}
+
+
+volume()
+{
+
+    ponymix is-muted
+    if [ $? -eq 0 ]; then
+        echo MUTE
+    else
+        echo "%{A4:ponymix inc 5:}%{A5:ponymix dec 5:}♫ $(ponymix get-volume)%%%{A}%{A}"
+    fi
+
+}
+
+if [ "$(pgrep -cx panel)" -gt 1 ] ; then
+    printf "%s\n" "The panel is already running." >&2
+    exit 1
+fi
+
+BACKGROUND="#55000000"
+FONT1='-*-tewi-medium-*-*-*-11-*-*-*-*-*-*-*'
+FONT2='-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1'
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+bspc control --subscribe > "$PANEL_FIFO" &
+
+xtitle -sf 'T%s' > "$PANEL_FIFO" &
+
+clock -i 1 -sf 'C%b %d %H:%M:%S' > "$PANEL_FIFO" &
+
+while true; do
+    echo -e "S$(wifi) | %{A:ponymix toggle:}$(volume)%{A} | $(panel_battery)" > "$PANEL_FIFO" &
+    sleep 1s
+done &
+
+panel_bar < "$PANEL_FIFO" | lemonbar -p -g "1326x+20+10" -B $BACKGROUND -u 2 -F#ffffffff -f $FONT1 -f $FONT2 | bash &
+
+
+wait

@@ -19,7 +19,7 @@ PROMPT="%F{green}%n@%m%f %~
 %F{black}令%f "
 zstyle ':completion:*' menu select
 
-alias ls="ls --color"
+alias ls="ls -h --color"
 alias l="ls -l"
 alias netlist="netctl-auto list"
 alias curnet="netctl-auto current"
@@ -32,7 +32,7 @@ alias ctrlv="xclip -o -sel clip"
 alias fuck='$(thefuck $(fc -ln -1))'
 alias menu=''
 
-export WALLPAPER="$HOME/images/wallpapers/city.jpg"
+export WALLPAPER="$HOME/images/wallpapers/sea.jpg"
 export PATH="$PATH:/home/don/bin:/home/don/.gem/ruby/2.2.0/bin:/home/don/.cabal/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="vim"

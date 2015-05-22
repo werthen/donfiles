@@ -1,13 +1,13 @@
 #!/bin/sh
 
-bspc config top_padding 14
+bspc config top_padding 25
 
 # Visual options
 bspc config split_ratio 0.50
 bspc config border_width 3
 bspc config window_gap 20
 bspc config borderless_monocle true
-bspc config gapless_monocle true
+bspc config gapless_monocle false
 bspc config focus_follows_pointer true
 bspc config auto_alternate true
 bspc config auto_cancel true
@@ -27,10 +27,15 @@ bspc monitor -d web dev social xxx
 bspc monitor VGA1 -d one two three four
 
 bspc rule -a feh floating=on
+bspc rule -a pavucontrol floating=on
+bspc rule -a Thunar floating=on
 bspc rule -a gifview floating=on
-bspc rule -a dmenu border=on
+bspc rule -a lxappearance floating=on
 bspc rule -a OzTools floating=on
 bspc rule -a scratchpad floating=on
+
+bspc rule -a Dmenu border=on
+
 bspc rule -a Popup border=off
 
 panel &
