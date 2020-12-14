@@ -5,12 +5,16 @@ endif
 
 set nu
 syntax on
-set tabstop=2
 set autoindent
-set expandtab
-set softtabstop=2
 let mapleader= ","
 set mouse=a
+
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+set clipboard^=unnamed,unnamedplus
 
 " Display different types of white spaces.
 set list
@@ -53,8 +57,8 @@ call plug#end()
 let g:deoplete#enable_at_startup = 1
 
 " Enable NERDTree at startup if no files are selected
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 autocmd Filetype ledger setlocal ts=4 sw=4 expandtab
 
