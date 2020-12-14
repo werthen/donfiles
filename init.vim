@@ -1,6 +1,6 @@
 " Source the vimrc file after saving it
 if has("autocmd")
-    autocmd bufwritepost .nvimrc source /Users/don/.nvimrc
+    autocmd bufwritepost .nvimrc source $HOME/.config/nvim/init.vim
 endif
 
 set nu
@@ -16,6 +16,12 @@ set expandtab
 
 set clipboard^=unnamed,unnamedplus
 
+" Move down lines when soft wrapping
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+
 " Display different types of white spaces.
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
@@ -24,6 +30,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
+
+" Async make
+Plug 'tpope/vim-dispatch'
+
+" Pandoc markdown
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" A bunch of languages
+Plug 'sheerun/vim-polyglot'
+
+" Zen mode
+Plug 'junegunn/goyo.vim'
 
 " Linting
 Plug 'dense-analysis/ale'
@@ -53,14 +71,25 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 
+" Easy making
+map <f9> :Make<CR>
+
 " Enable deoplete at startup
 let g:deoplete#enable_at_startup = 1
+
+" Dont use concealing characters in pandoc vim
+let g:pandoc#syntax#conceal#use = 0
 
 " Enable NERDTree at startup if no files are selected
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 autocmd Filetype ledger setlocal ts=4 sw=4 expandtab
+
+" Enable pandoc syntax for markdown files
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
 
 " enable tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -124,4 +153,4 @@ if (empty($TMUX))
 endif
 
 colorscheme onedark
-:hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
