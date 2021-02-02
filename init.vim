@@ -43,6 +43,9 @@ Plug 'sheerun/vim-polyglot'
 " Zen mode
 Plug 'junegunn/goyo.vim'
 
+" Aligning tables and such
+Plug 'junegunn/vim-easy-align'
+
 " Linting
 Plug 'dense-analysis/ale'
 
@@ -72,7 +75,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
 
 " Easy making
-map <f9> :Make<CR>
+map <f9> :Make!<CR>
 
 " Enable deoplete at startup
 let g:deoplete#enable_at_startup = 1
@@ -85,6 +88,9 @@ let g:pandoc#syntax#conceal#use = 0
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 autocmd Filetype ledger setlocal ts=4 sw=4 expandtab
+
+" Shortcut to align markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 " Enable pandoc syntax for markdown files
 augroup pandoc_syntax
